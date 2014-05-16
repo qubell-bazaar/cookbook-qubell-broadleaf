@@ -24,7 +24,7 @@ platforms:
       username: ubuntu
       flavor_id: "m1.small"
       tags:
-        Name: cookbook-qubell-tomcat-Ubuntu-12.04
+        Name: cookbook-qubell-broadleaf-Ubuntu-12.04
         owner_name: test-kitchen
 
   - name: ubuntu-10.04
@@ -33,7 +33,7 @@ platforms:
       username: ubuntu
       flavor_id: "m1.small"
       tags:
-        Name: cookbook-qubell-tomcat-Ubuntu-10.04
+        Name: cookbook-qubell-broadleaf-Ubuntu-10.04
         owner_name: test-kitchen
 
   - name: centos-6.4
@@ -42,51 +42,18 @@ platforms:
       username: root
       flavor_id: "m1.small"
       tags:
-        Name: cookbook-qubell-tomcat-CentOS-6.4
+        Name: cookbook-qubell-broadleaf-CentOS-6.4
         owner_name: test-kitchen
 
   - name: centos-5.3
     driver:
-      image_id: ami-beda31d7
+      image_id: 
       username: root
       flavor_id: "m1.small"
       tags:
-        Name: cookbook-qubell-tomcat-CentOS-5.3
+        Name: cookbook-qubell-broadleaf-CentOS-5.3
         owner_name: test-kitchen
 
 suites:
-  - name: default
-    run_list:
-      - recipe[minitest-handler]
-      - recipe[cookbook-qubell-tomcat_test::default]
-    attributes:
-  - name: deploy_libs
-    run_list:
-      - recipe[minitest-handler]
-      - recipe[cookbook-qubell-tomcat_test::deploy_libs]
-    attributes: {"cookbook-qubell-tomcat": {"lib_uri": ["http://repo1.maven.org/maven2/log4j/log4j/1.2.17/log4j-1.2.17.jar"]}}
-  - name: deploy_war
-    run_list:
-      - recipe[minitest-handler]
-      - recipe[cookbook-qubell-tomcat_test::deploy_war]
-    attributes: {"cookbook-qubell-tomcat": 
-                  {"create_context": true,
-                   "war":
-                     {"uri": "https://dl.dropboxusercontent.com/u/957640/deploytest/petclinic.war",
-                      "path": "petclinic"
-                     }, 
-                   "context":
-                     {"context_attrs": 
-                       {"docBase": "/var/lib/tomcat6/webapps/petclinic.war", 
-                        "path": "/", 
-                        "debug": "5", 
-                        "reloadable": "true", 
-                        "crossContext": "true", 
-                        "allowLinking": "true"
-                       },
-                      "context_nodes": []
-                     }
-                   }
-                 }
 
 
