@@ -55,5 +55,22 @@ platforms:
         owner_name: test-kitchen
 
 suites:
-
+  - name: default
+    run_list:
+      - recipe[cookbook-qubell-build]
+      - recipe[minitest-handler]
+      - recipe[cookbook-qubell-broadleaf_test::add-solr-support]
+    attributes: {"cookbook-qubell-build": {
+                  "dest_path": "/tmp",
+                  "target": "/tmp/mvn"
+                  },
+                 "scm": {
+                   provider: "git",
+                   repository: "git://github.com/qubell-bazaar/DemoSite.git",
+                   revision: "solr-cloud"
+                 },
+                 "cookbook-qubell-broadleaf": {
+                   solr_url: ["1.1.1.1:1111","2.2.2.2:2222","3.3.3.3:3333"]
+                 }
+                }
 

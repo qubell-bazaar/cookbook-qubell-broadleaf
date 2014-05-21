@@ -21,6 +21,12 @@ execute "upadte_war" do
     action :run
 end
 
+execute "backup_template" do
+    cwd "#{node['cookbook-qubell-build']['target']}"
+    command "cp -f WEB-INF/applicationContext.xml /tmp"
+    action :run
+end
+
 directory "#{node['cookbook-qubell-build']['target']}/WEB-INF" do 
   action :delete
   recursive true
