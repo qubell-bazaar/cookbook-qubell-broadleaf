@@ -1,8 +1,3 @@
-service "tomcat" do
-  service_name "tomcat#{node["tomcat"]["base_version"]}"
-  supports :restart => false, :status => true
-  action :nothing
-end
 
 directory "#{node['cookbook-qubell-build']['target']}/WEB-INF" do 
   action :create
@@ -18,6 +13,12 @@ template "#{node['cookbook-qubell-build']['target']}/WEB-INF/applicationContext.
 execute "upadte_war" do
     cwd "#{node['cookbook-qubell-build']['target']}"
     command "jar -uvf mycompany.war WEB-INF/applicationContext.xml"
+    action :run
+end
+
+execute "backup_template" do
+    cwd "#{node['cookbook-qubell-build']['target']}"
+    command "cp -f WEB-INF/applicationContext.xml /tmp"
     action :run
 end
 
