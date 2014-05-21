@@ -1,8 +1,3 @@
-service "tomcat" do
-  service_name "tomcat#{node["tomcat"]["base_version"]}"
-  supports :restart => false, :status => true
-  action :nothing
-end
 
 directory "#{node['cookbook-qubell-build']['target']}/WEB-INF" do 
   action :create
