@@ -49,7 +49,7 @@ env:
   - KITCHEN_INSTANCE='add-solr-support-ubuntu-1204'
   - KITCHEN_INSTANCE='add-solr-support-ubuntu-1004'
   - KITCHEN_INSTANCE='add-solr-support-centos-64'
-  - KITCHEN_INSTANCE='add-solr-support-centos-56'
+  - KITCHEN_INSTANCE='add-solr-support-centos-53'
 script:
 - bundle exec kitchen test $KITCHEN_INSTANCE
 after_script:
