@@ -70,7 +70,7 @@ suites:
                    revision: "solr-cloud"
                  },
                  "cookbook-qubell-broadleaf": {
-                   solr_url: ["1.1.1.1:1111","2.2.2.2:2222","3.3.3.3:3333"]
+                   solr_url: "1.1.1.1:1111,2.2.2.2:2222,3.3.3.3:3333"
                  }
                 }
 
