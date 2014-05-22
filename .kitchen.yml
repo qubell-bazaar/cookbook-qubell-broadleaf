@@ -55,7 +55,7 @@ platforms:
         owner_name: test-kitchen
 
 suites:
-  - name: default
+  - name: add-solr-support
     run_list:
       - recipe[cookbook-qubell-build]
       - recipe[minitest-handler]
