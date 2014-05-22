@@ -47,7 +47,7 @@ platforms:
 
   - name: centos-5.3
     driver:
-      image_id: 
+      image_id: ami-beda31d7 
       username: root
       flavor_id: "m1.small"
       tags:
