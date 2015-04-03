@@ -1,3 +1,13 @@
+case node['platform_family']
+  when "debian"
+    execute "update packages cache" do
+      command "apt-get update"
+    end
+  end
+
+package "unzip" do
+  action :install
+end
 
 directory "#{node['cookbook-qubell-build']['target']}/WEB-INF" do 
   action :create
