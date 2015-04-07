@@ -63,10 +63,11 @@
     <!-- application footprint, it will default the search service to use the database implementation, which  -->
     <!-- is slower and less full-featured. Broadleaf suggests maintaining this solr implementation in the vast -->
     <!-- majority of cases. -->
-    <!-- <bean id="solrEmbedded" class="java.lang.String"> -->
-    <!--    <constructor-arg value="solrhome"/> -->
-    <!-- </bean> -->
-
+<% if @solr_url.length == 0 -%>
+     <bean id="solrEmbedded" class="java.lang.String">
+        <constructor-arg value="solrhome"/> 
+     </bean> 
+<% end -%>
     <!--A simple quartz jobs for enabling cart and customer purge functionality. Uncomment the following quartz configurations -->
     <!--to activate this functionality (Also, uncomment the 'purgeCartTrigger' and 'purgeCustomerTrigger' configured under SchedulerFactoryBean.-->
     <!--Note, you can edit the configuration to customize the functionality. Take a look-->
@@ -132,6 +133,12 @@
     <!-- for example: http://localhost:8983/solr/reindex. The defaultCoreName property in solr.xml should -->
     <!-- point to the primary core. solr.source and solr.source.reindex should be set to solrServer and -->
     <!-- solrReindexServer, respectively. -->
+<% if @solr_url.length == 0 -%>
+    <bean id="blSearchService" class="org.broadleafcommerce.core.search.service.solr.SolrSearchServiceImpl">
+        <constructor-arg name="solrServer" ref="${solr.source}" />
+        <constructor-arg name="reindexServer" ref="${solr.source.reindex}" />
+    </bean>
+<% else -%>
         <bean id="solrServer" class="org.apache.solr.client.solrj.impl.CloudSolrServer"> 
              <constructor-arg value="<%= @solr_url %>" /> 
              <property name="defaultCollection" value="primary" />
@@ -144,6 +151,7 @@
         <constructor-arg name="solrServer" ref="${solr.source}" />
     <!--    <constructor-arg name="reindexServer" ref="${solr.source.reindex}" /> -->
     </bean>
+<% end -%>
     <bean id="rebuildIndexJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="blSearchService" />
         <property name="targetMethod" value="rebuildIndex" />
