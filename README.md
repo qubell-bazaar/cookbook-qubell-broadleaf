@@ -14,7 +14,7 @@ Cookbooks
 ---------
 - Depends "build-essential", "1.4.4"
 - Depends "java", "1.11.6"
-- Depends "yum", "2.3.2"
-- Depends "apt", "2.4.0"
+- Depends "yum", "2.3.1"
+- Depends "apt", "2.7.0"
 - Depends "git", "2.7.0"
-- Depends "cookbook-qubell-build", "0.2.0"
+- Depends "cookbook-qubell-build", "0.3.0"
